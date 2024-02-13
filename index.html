@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Import Question</title>
+    <style>
+        body {
+            background: linear-gradient(45deg, #ffc0cb, #f5f5dc);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    flex-direction: column; /* Change flex direction to column */
+    align-items: center; /* Align items vertically */
+    flex-wrap: wrap;
+}
+
+        #no-button {
+            margin: 0 10px;
+            color: white;
+            background-color: red;
+            height: 45px;
+            width: 150px; /* Increased width */
+            border: none;
+            cursor: pointer;
+            margin-top: 150px;
+            border-radius: 20px; /* Rounded corners */
+            position: absolute; /* Position the button absolutely */
+           
+        }
+
+        #yes-button {
+    margin: 0 10px;
+    color: white;
+    border: none;
+    background-color: green;
+    cursor: pointer;
+    height: 45px;
+    width: 150px;
+    transition: all 0.3s ease-in-out;
+    border-radius: 20px;
+    margin-top: 20px; /* Adjust this value to add space between the text and the button */
+}
+        /* Make responsive for mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 0 20px;
+            }
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .message h2 {
+            margin: 0;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+        }
+
+        .message h6 {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.8);
+            font-style: italic;
+        }
+
+        .banner-gif {
+            width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        .banner-gif img {
+            width: auto;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="banner-gif">
+            <img id="banner" src="https://lh3.googleusercontent.com/proxy/IjyGiGJw4D9gSkYHlsUafaaCtYK4mHT3FHMjNOHt56F735GjlsmsBFHcOwO-SS3WA3ZDv7NH2rI4GLzL1wW8NG3u3745ATQZUBgMRGdiXhb5wv8obSufvWzetjDUeF9_9LQnuRs-sc1Kv2dPd_5H1chjdnS07MINt6cL_g" alt="banner" />
+        </div>
+        <h1>Will you be my valentine?</h1>
+        <div class="buttons">
+            <button id="yes-button"><p>Yes, Please</p></button>
+            <button id="no-button"><p>No, Fuck u</p></button>
+        </div>
+        <div class="message">
+            <h2></h2>
+        </div>
+    </div>
+    <script>
+        const answers = [
+    "Are you sure?",
+    "Are you really sure??",
+    "Are you really really sure???",
+    "Think again?",
+    "Don't believe in second chances?",
+    "Why are you being so cold?",
+    "Maybe we can talk about it?",
+    "I am not going to ask again!",
+    "Ok now this is hurting my feelings!",
+    "You are now just being mean!",
+    "Why are you doing this to me?",
+    "Please give me a chance!",
+    "I am begging you to stop!",
+    "Ok, Let's just start over..",
+    "Are you sure you want to end this?",
+    "Maybe we can work things out?",
+    "Please don't leave me hanging!",
+    "Can we try to fix things?",
+    "I don't want to lose you!",
+    "Can we start over?",
+    "I'm willing to change if you give me a chance.",
+    "Do you really want to throw this all away?",
+    "Is there someone else?",
+    "I'm not ready to give up on us.",
+    "Do you still love me?",
+    "Do you want to break my heart?",
+    "I thought we had something special.",
+    "Can we try again?",
+    "I miss you already.",
+    "Is there anything I can do to change your mind?",
+    "Do you believe in us?",
+    "Can we take a break instead?",
+    "I need you in my life.",
+    "Is this really what you want?",
+    "Can't we work this out?",
+    "Do you need more time?",
+    "I'll wait for you.",
+    "Are you sure this is the end?",
+    "Can't we try one more time?",
+    "I can't imagine life without you.",
+    "I'll do anything to make this work.",
+    "I thought we were meant to be.",
+    "I'm not ready to let go.",
+    "Can we talk about this?",
+    "I believe in us, do you?",
+    "Are you willing to give us another chance?",
+    "I'll never stop loving you.",
+    "Ok, at this point, do you really love me?"
+];
+
+        const no_button = document.getElementById('no-button');
+        const yes_button = document.getElementById('yes-button');
+        let i = 0;
+        let size = 45;
+
+        no_button.addEventListener('click', () => {
+            if (i < answers.length) {
+                let message = document.querySelector('.message h2');
+                message.textContent = answers[i];
+                i++;
+                size += 5;
+                yes_button.style.height = `${size}px`;
+                yes_button.style.width = `${size}px`;
+                moveNoButton();
+            }
+        });
+
+        yes_button.addEventListener('click', () => {
+    let banner = document.getElementById('banner');
+    banner.src = "https://i.pinimg.com/736x/85/bd/06/85bd06c324ea37c5eadec42c5927c154.jpg";
+    refreshBanner();
+    document.querySelector('.buttons').style.display = "none";
+    let message = document.querySelector('.message h2');
+    message.textContent = "YIPPIEEEEE, SEE YOU TOMORROWWW MI LOVE <3";
+    document.querySelector('.message').style.display = "block";
+
+    // Hide the "Will you be my valentine?" text
+    document.querySelector('h1').style.display = "none";
+});
+
+        function refreshBanner() {
+            let banner = document.getElementById('banner');
+            let src = banner.src;
+            banner.src = '';
+            banner.src = src;
+        }
+        function moveNoButton() {
+            let maxX = window.innerWidth - 200; // Adjust 200 to ensure the button doesn't move too far
+            let maxY = window.innerHeight - 200; // Adjust 200 to ensure the button doesn't move too far
+            let newX = Math.random() * maxX;
+            let newY = Math.random() * maxY;
+            no_button.style.left = `${newX}px`;
+            no_button.style.top = `${newY}px`;
+        }
+
+    </script>
+</body>
+</html>
